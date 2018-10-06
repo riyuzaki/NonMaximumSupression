@@ -29,7 +29,7 @@ has
 ## function 1
 This implements an `aggregate` function that takes the _candidate_ rectangles list as an argument and returns a list of _detection_ rectangles, one per object.
 
-Think of this as a the last stage in a vehicle detection algorithm. Our detection algorithm generates a candidate rectangle everywhere in the image it thinks it's found a vehicle, and this can lead to multiple rectangles of slightly different sizes and shapes for the same vehicle. Your `aggregate` function will get rid of all but the highest-confidence rectangle for each vehicle, such as seen in the figure above.
+Think of this as a the last stage in a vehicle detection algorithm. The detection algorithm generates a candidate rectangle everywhere in the image it thinks it's found a vehicle, and this can lead to multiple rectangles of slightly different sizes and shapes for the same vehicle. The `aggregate` function will get rid of all but the highest-confidence rectangle for each vehicle, such as seen in the figure above.
 
 Pseudocode:
 ```
@@ -38,7 +38,7 @@ list<Rect> cars = aggregate(detections) {
 }
 ```
 
-The code should read a file from the `input/` folder and save the result to a `Solution/` folder, in similar format to the files in the `truth/` folder. Two files per image
+The code will read a file from the `input/` folder and save the result to a `Solution/` folder, in similar format to the files in the `truth/` folder. Two files per image
 
 * A text file with a space-separated 4-tuple (x y width height) per detection rectangle, with each detection in a new line
 * An image file showing the rectangles from the text file drawn on top of the input image
@@ -47,4 +47,4 @@ The code should read a file from the `input/` folder and save the result to a `S
 
 In some of the images, the highest ranked candidate is not a good quality detection. For example, in `img/2.png` and `img/3.png` more than one vehicle gets grouped into one rectangle. Can you do better?
 
-That brings up the question, how would you quantify the overall quality of your solution? The answer is to use the Intersection over Union (IoU) algorithm to compare your detection rectangles with the "truth" rectangles that we've drawn by hand (in the `truth` folder). The code should compare each detection rectangle with the best-fitting truth rectangle and generate a value between 0.0 (no overlap) and 1.0 (perfect overlap). Save these results to a `scoring` folder with one file per image, one detection score per line. Then also save the overall average for all five images to a file named `overall_score`.
+That brings up the question, how would you quantify the overall quality of your solution? The answer is to use the Intersection over Union (IoU) algorithm to compare your detection rectangles with the "truth" rectangles that we've drawn by hand (in the `truth` folder). The code should compare each detection rectangle with the best-fitting truth rectangle and generate a value between 0.0 (no overlap) and 1.0 (perfect overlap). It then saves these results to a `scoring` folder with one file per image, one detection score per line. Then also saves the overall average for all five images to a file named `overall_score`.
