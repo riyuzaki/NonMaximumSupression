@@ -1,5 +1,14 @@
 # NonMaximumSupression
 
+After cloning the repo, use the following command to run:
+
+```
+g++ -std=c++17 `pkg-config --cflags opencv` detect.cpp `pkg-config --libs opencv` -o out -lstdc++fs -lpthread
+```
+
+Make sure your gcc is updated so that you are use C++17. I your compiler is older than gcc 7.1 use the flag -std=c++1z (experimental) instead.
+
+
 The inputs are in the following directories :
 
 1. `img` - input images showing vehicles
